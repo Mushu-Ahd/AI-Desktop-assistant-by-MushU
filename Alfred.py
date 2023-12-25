@@ -17,7 +17,7 @@ def wishMe():
         speak("It's so mid night, isn't it?")
 
     elif hour >= 4 and hour <12:
-        speak("Morning Mushu. I'm sure you are having a great day...")
+        speak("Morning User-Name. I'm sure you are having a great day...")
 
     elif hour >=12 and hour < 18:
         speak('Good Afternoon Mushu')
@@ -72,6 +72,7 @@ def delete_file(folder, filename):
     except Exception as e:
         print(f"Error: {e}")
 
+#Function for taking command 
 def takeCommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
@@ -97,11 +98,13 @@ voices = engine.getProperty('voices')
 
 engine.setProperty('voice' , voices[0].id)
 
+#Function to speak the reply
 def speak(audio):
     engine.say(audio)
 
     engine.runAndWait()
 
+#Funciton for sending Emails
 def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.echo()
@@ -116,10 +119,7 @@ if __name__ == "__main__":
     #while True:
 
     def function():
-
         lst = ["Search on Internet", "Open Brower" , "StackOverFlow" , "Current Time" , "Open Code" , "Play Games"]
-
-
         query = takeCommand().lower()
 
         if 'search on internet'.lower() in query:
@@ -133,8 +133,10 @@ if __name__ == "__main__":
         elif 'open browser'.lower() in query :
             speak("can you specify, which site do you want to open or visit?")
             output = takeCommand()
+            
             if "youtube".lower() in output:
                 webbrowser.open("youtube.com")
+                
             elif "instagram".lower() in output:
                 webbrowser.open("instagram.com")
                 
@@ -146,8 +148,7 @@ if __name__ == "__main__":
                 
             elif "google".lower() in output:
                 webbrowser.open("google.com")
-
-            
+                
             else:
                 speak(f"sorry, i don't know much about {output} website. so i am gonna open Google search engine. you may search on it...")
                 webbrowser.open("google.com")
@@ -167,7 +168,7 @@ if __name__ == "__main__":
             try:
                 speak("what should i say?")
                 content = takeCommand()
-                to = 'mushuahd@gmail.com'
+                to = "User's Email eg :- xyz@gmail.com"
                 sendEmail(to, content)
                 speak("Email has been sent...")
             
@@ -178,6 +179,7 @@ if __name__ == "__main__":
         elif "open drive".lower() in query:
             speak("can you specify which folder do you want to open in This pc?")
             file = takeCommand()
+            
             if f"first drive".lower() in file.lower():
                 speak("Opening c drive...")
                 os.startfile("c:\\")
@@ -189,36 +191,33 @@ if __name__ == "__main__":
         elif "play game".lower() in query:
             speak(" Ok but which game, can you specify please...")
             game = takeCommand()
-            if "car" in game:
-                path = "D:\\Froza Horizon 4\\Forza.Horizon.4(GamingBeasts.com)\\Forza.Horizon.4.v1.476.400.0.Incl.ALL.DLC\\Forza.Horizon.4.v1.476.400.0.Incl.ALL.DLC\\ForzaHorizon4.exe"
+            
+            if "Game-Name" in game:
+                path = "add the path / Logcation of the game here..."
                 speak("alright sir, The game is about to start.")
                 os.startfile(path)
 
             elif "GTA 5".lower() in game:
                 path = ""
-                speak("Ok master, The game is about to start. please make sure you have connected the external keyboard and mouse along with charging cable for better experience...")
+                speak("Ok sir, The game is about to start. please make sure you have connected the external keyboard and mouse along with charging cable for better experience...")
             
             else:
                 speak("sorry sir, their is only one game in this device right")
 
 
         elif "friend".lower() in query:
-            
             speak("can you specify more, means your friend name?")
-            
             frd = takeCommand()
             
-            if "wasef" and "wasif" in frd.lower():
-                speak("wasif, one of your B.C.S. batchmate. According to my knowledge, he is the finest friend of yours. He lives in the area called Kat-kat gate. He is also a gym-rat, but currently he turned out to be gay. LGBTQ supporter.  ")
+            if "Friends-Name" in frd.lower():
+                speak("Add the Friend's detail like what he does , what his hobbies are in , etc...")
                 print(speak)
 
             else:
                 pass
 
         elif "close the program".lower() in query:
-            
             speak('are you sure?')
-            
             sen = takeCommand()
             
             if 'yes' in sen :
@@ -234,17 +233,12 @@ if __name__ == "__main__":
                 pass
         
         elif "open pdf" in query:
-            
             speak("which PDF do you want to open? Can you specify.. please")
-            
             pf = takeCommand().lower()
 
             if "machine learning".lower() in pf:
-
                 speak("opening Machine learning PDF, please wait...")
-
                 path = "D:\\Hands on Machine Learning.pdf"
-
                 os.startfile(path)
             
             else:
@@ -252,6 +246,7 @@ if __name__ == "__main__":
                 pass 
         
         elif 'perform task on file' in query:
+            
             if "open file" in query:
                 folder = "D:\\"                               # Specify the folder path
                 filename = query.replace("open file", "").strip()
@@ -278,8 +273,9 @@ if __name__ == "__main__":
                 folder = "D:\\"                             # Specify the folder path
                 filename = query.replace("delete file", "").strip()
                 delete_file(folder, filename)
+                
             elif "exit" in query:
                 speak("sorry... please try again. I didn't get you")
 
-        
+    
     function()
