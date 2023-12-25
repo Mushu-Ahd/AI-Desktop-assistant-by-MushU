@@ -7,12 +7,10 @@ import webbrowser
 import os
 import sys
 
-
-
-
 def wishMe():
     
     hour = int(datetime.datetime.now().hour)
+    
     if hour >= 0 and hour < 4:
         speak("It's so mid night, isn't it?")
 
@@ -25,6 +23,7 @@ def wishMe():
     else:
         speak("Good evening Mushu")
     speak("Myself Alfred , how may i help you Today?")
+
 def open_file(folder, filename):
     file_path = os.path.join(folder, filename)
     try:
